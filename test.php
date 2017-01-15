@@ -1,10 +1,19 @@
 <?php
 define('TOKEN',$_GET['s']);
+if(!(isset($_GET['s']))) {
+	define("SHOWERROR", true);
+}
 ?>
 <html>
 <head>
 </head>
 <body>
+<?php if(SHOWERROR) {
+	?>
+	<h1>WARNING: Token is not set, check documentation.</h1>
+<?php
+}
+?>
 <form action="ticketSlack2.php?s=<?php echo TOKEN; ?>" method="POST">
 <p>Ticket ID (from ticket url): <input type="text" name="id"></p>
 <p>Ticket Number (T20170101.0001): <input type="text" name="id"></p>
