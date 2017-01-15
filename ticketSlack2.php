@@ -26,6 +26,11 @@ if (empty($_SERVER['HTTPS'])) {
     die("SSL WAS NOT USED <br />We want you to use SSL for your own good. Please go back and use SSL");
 }
 #end ssl check
+#check to make sure that the request variable has been sent. If it hasn't then die. this helps us prevent some asshole from mashing our URL to spam Slack
+if(!(isset($_POST['id']))) {
+	die("Invalid Request Bro");
+}
+#endcheck
 //Fire GetTicketInfo to get our array of data
 $ticketData = GetTicketInfo($ticketNumber,$wsdl,$username,$password);
 //Unwrap the array
