@@ -14,18 +14,12 @@ require_once __DIR__ . '/src/autoload.php';
 $ticketNumber = $_POST['number'];
 $ticketId = $_POST['id'];
 require_once __DIR__ . '/functions.php';
-//check for testmode variable
-if($_POST['testmode']=="yes") {
-	define("TESTMODE",true);
-}
-else {
-	define("TESTMODE",false);
-}
 #I WANT YOU TO USE SSL ~~ Comment this part out at your own risk
 if (empty($_SERVER['HTTPS'])) {
     die("SSL WAS NOT USED <br />We want you to use SSL for your own good. Please go back and use SSL");
 }
 #end ssl check
+#Check The Security Token
 $submittedToken = $_GET['s'];
 if(!($submittedToken == $ticketslacktoken)) {
 		die("The Security Token Was Not Received or Was Invalid");
@@ -42,7 +36,7 @@ $companyName = $ticketData["CompanyName"];
 //Fire MakeSlackNewTicketMessage to get an encoded message for Slack
 $message = MakeSlackNewTicketMessage($ticketNumber,$ticketId,$ticketTitle,$ContactName,$ContactPhone,$ContactEmail,$companyName,$atzone);
 ##TESTMODE is created from the checkbox in form.html. It stops the message from being dispatched to Slack but displayes it in the browser.
-if(TESTMODE){
+if($testmode){
 	echo urldecode($message)."<br />";
 	echo $room."<br />";
 	echo $slacknotificationsendpoint;
