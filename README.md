@@ -28,3 +28,13 @@ Save & Close
 Now create a workflow rule to fire this callout. For my purposes, I set my workflow to fire when a new ticket is created by an external contact, and filtered it to certain queues that matter most to me. You can design yours however you want. Just make sure that you select your callout under actions.
 
 That's it, you should be good to go :). ENJOY!!
+
+##Testing
+You can test the integration easily. The included test.php file contains a form that will input the proper variables.
+
+To test, navigate to https://server/atslack/test.php?s=YOURSECURITYTOKEN (don't forget the token)
+
+For Ticket ID enter the ticket ID. This can be found by clicking on the ticket in Autotask. Check the url after ?ticketID=
+For ticket number, enter the correct ticket number (T20170101.0001 for example).
+
+If you want to view the output in the browser instead of pushing it to Slack, open config.php and set $testmode to true.
