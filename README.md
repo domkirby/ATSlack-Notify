@@ -11,17 +11,18 @@ Your Slack URL is the URL of your Slack Webhook (https://kirbside.slack.com/apps
 
 Username and password should be API credentials for your Autotask instance. You can hit up your account rep to get these for free.
 
-Once you have setup the system on your server, navigate to https://yourserver/folder-where-atslack-is/form.html. Type in an existing ticket number and ID. The ticket ID can be retrieved by opening the ticket in Autotask and copying it from the URL after ticketID=.
+$ticketslacktoken is ***IMPORTANT:*** This adds a layer of security to the system, preventing a random person from war dialing ticket numbers :). Set this to a RANDOM value (best not to use special characters). Then add it to your Ticket Extension per the below instructions!
 
 You can check the box to get output in the browser (to verify that it is pulling data). You can then repeat the process to test it and push the message to Slack. If all is working, the next steps are in Autotask.
 
 First login and go to Admin>Extensions and Integrations>Other Extensions and Tools>Extension Callouts
 Create a **NEW** extension callout with the following variables:
--Memorable Name
--URL: https://yourserver/folder-where-atslack-is/ticketSlack2.php
--Leave Username, Password, and UDF blank
--Transport Method POST
--Data Format Name Value Pair
+* Memorable Name
+* URL: https://yourserver/folder-where-atslack-is/ticketSlack2.php?s=YOURSECURITYTOKEN
+* Leave Username, Password, and UDF blank
+* Transport Method POST
+* Data Format Name Value Pair
+
 Save & Close
 
 Now create a workflow rule to fire this callout. For my purposes, I set my workflow to fire when a new ticket is created by an external contact, and filtered it to certain queues that matter most to me. You can design yours however you want. Just make sure that you select your callout under actions.
