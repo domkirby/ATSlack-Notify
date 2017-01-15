@@ -45,3 +45,4 @@ if(TESTMODE){
 else {
 	slack($message,$ticketnotificationroom,$slacknotificationsendpoint);
 }
+?>
