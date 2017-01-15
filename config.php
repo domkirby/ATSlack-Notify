@@ -25,3 +25,4 @@ $password = ""; #autotask api password
 
 //ticketSlack2.php (Ticket Notifications)
 $ticketnotificationroom = "tickets"; #Slack room that you want the messages in, minus the hashtag#
+$ticketslacktoken = ""; #Set this to a random string, and be sure to include it on your ticket extension#
