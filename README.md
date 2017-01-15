@@ -7,7 +7,7 @@ You'll need a server (Linux is ideal) with PHP and PHP-SOAP client. Many shared 
 ##Installation
 Installation is simple. Download as a ZIP and extract on your web server. Set permissions for config.php to 0600. Edit config.php and fill in the appropriate variables. Your "Autotask Realm" is the first part of the URL after you login (examples: ww5, ww14). Your webservices URL is based on the Realm. If you're in ww5, than your services host should be webservices5.
 
-Your Slack URL is the URL of your Slack Webhook (https://kirbside.slack.com/apps/A0F7XDUAZ-incoming-webhooks). Create your webhook there. You will also want to set the name and icon as we do not do that in ATSlack-Notify. You also need to set the channel within config.php that you want the messages posted to. It does not matter what you picked on Slack.
+Your Slack URL is the URL of your Slack Webhook (YOUR_TEAM.slack.com/apps/A0F7XDUAZ-incoming-webhooks). Create your webhook there. You will also want to set the name and icon as we do not do that in ATSlack-Notify. You also need to set the channel within config.php that you want the messages posted to. It does not matter what you picked on Slack.
 
 Username and password should be API credentials for your Autotask instance. You can hit up your account rep to get these for free.
 
