@@ -22,10 +22,22 @@ $slacknotificationsendpoint = "https://hooks.slack.com/services/WHOLE BUNCHA DAT
 $atzone = "ww5"; #your autotask realm get this by logging in and checking your url https://ww5.autotask.net (between :// and .autotask.net is the realm)#
 $username = ""; #autotask api username
 $password = ""; #autotask api password
+$extensiontoken = ""; #This String is used for all ticket extensions (append as ?s=THISTOKEN)
+
+//Database Configuration (We use a database to map Slack users to Autotask Resources)
+$dbhost = "localhost"; #MySQL Server
+$dbusername = "username"; #MySQL User (should have all perms on DB, DO NOT USE ROOT)
+$dbpassword = "password"; #MySQL Password
+$dbname = "atslack"; #database name
+$dbmantoken = "RANDOMSTRONG"; #token from your slash command (you will get this from Slack)
+$adminlist = "admin1|admin2"; //Separate by pipe symbol as seen in example if you need multiple people to have access. (list of users allowed to manage db)
 
 //ticketSlack2.php (Ticket Notifications)
 $ticketnotificationroom = "tickets"; #Slack room that you want the messages in, minus the hashtag#
-$ticketslacktoken = ""; #Set this to a random string, and be sure to include it on your ticket extension#
+
+//ticketReply.php (Ticket Reply Notifications)
+$replyenabled = true; #Set this to false to prevent this function from being fired ever
+
 
 /*
 TESTING MODE
