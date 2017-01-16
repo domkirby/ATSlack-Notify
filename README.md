@@ -79,7 +79,7 @@ Here is an example of right: https://i.imgur.com/fgQKz4j.png
 
 #### Map Your Users
 
-**Autotask Username (atusername):** Your autotask username if the username that you use to login to autotask WITHOUT @domain.com. So, if you type john@domain.com when you login to Autotask, your Autotask Username is John
+**Autotask Username (atusername):** Your autotask username if the username that you use to login to autotask WITHOUT @domain.com. So, if you type john@domain.com when you login to Autotask, your Autotask Username is john
 
 **Slack Useraname (slackname):** Your slack username.
 
@@ -105,6 +105,10 @@ For Ticket ID enter the ticket ID. This can be found by clicking on the ticket i
 For ticket number, enter the correct ticket number (T20170101.0001 for example).
 
 If you want to view the output in the browser instead of pushing it to Slack, open config.php and set $testmode to true.
+
+## Security
+
+NOTE: Unless you modify the code, SSL is required for this script to function.
 
 ## Thanks!
 
