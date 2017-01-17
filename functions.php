@@ -138,7 +138,7 @@ function PullReplyResourceSlackName($ResourceUsername,$dbhost,$dbusername,$dbpas
         $result = mysqli_query($mysql,$query);
 		$row = mysqli_fetch_array($result);
     }
-	return $row;
+	return $row["slackuser"];
 }
 # END SLACK NAME
 

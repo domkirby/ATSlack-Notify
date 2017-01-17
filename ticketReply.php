@@ -47,8 +47,8 @@ $ContactEmail = $ticketData["ContactEmail"];
 $companyName = $ticketData["CompanyName"];
 $ResourceUsername = $ticketData["ResourceUsername"];
 //Fire PullReplyResourceSlackName to get the resource's name
-$ResourceSlackArray = PullReplyResourceSlackName($ResourceUsername,$dbhost,$dbusername,$dbpassword,$dbname);
-$ResourceSlackName = $ResourceSlackArray["slackuser"];
+$ResourceSlackName = PullReplyResourceSlackName($ResourceUsername,$dbhost,$dbusername,$dbpassword,$dbname);
+//$ResourceSlackName = $ResourceSlackArray["slackuser"];
 if($ResourceSlackName == "") {
 	//if we couldn't find the slack user we'll send this to the ticket notification room from config.php (this happens if the ticket is unassigned or if the user isn't mapped in the database
 	$Recipient = "#".$ticketnotificationroom;
