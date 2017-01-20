@@ -23,10 +23,9 @@
 #EDIT AT YOUR OWN RISK
 #
 //Get required files and stuff
+header('Content-Type: application/json'); //Set the header to return JSON, required by Slack
 require_once __DIR__ . '/config.php';
 require_once __DIR__ . '/src/autoload.php';
-$ticketNumber = $_POST['number'];
-$ticketId = $_POST['id'];
 require_once __DIR__ . '/functions.php';
 #I WANT YOU TO USE SSL ~~ Comment this part out at your own risk
 if (empty($_SERVER['HTTPS'])) {
@@ -36,10 +35,27 @@ if (empty($_SERVER['HTTPS'])) {
 ##########################################################
 ####THIS FUNCTION IS IMPORTANT TO PREVENT DATA LEAKAGE####
 ##########################################################
-if(!($_GET['s'] == $extensiontoken)) {
+if(!($_GET['token'] == $ticketlookuptoken)) {
 	die("Invalid Token or No Token Received");
 }
 # Now that we've checked security, we'll do some real work
+if(!(isset($_GET['text'])) || $_GET['text'] == "") die("No Text Received");
+$parameters = explode(" ", $_GET['text']);
+$ticketNumber = $parameters[0];
+//Timeout Fix Block
+if($timeoutfix == true)
+{
+    ob_end_clean();
+    header("Connection: close");
+    ob_start();
+    echo ('{"response_type": "in_channel"}');
+    $size = ob_get_length();
+    header("Content-Length: $size");
+    ob_end_flush();
+    flush();
+    session_write_close();
+}
+//End timeout fix block
 //Fire GetTicketInfo to get our array of data
 $ticketData = GetTicketInfo($ticketNumber,$wsdl,$username,$password);
 //Unwrap the array
@@ -48,17 +64,21 @@ $ContactName = $ticketData["ContactName"];
 $ContactPhone = $ticketData["ContactPhone"];
 $ContactEmail = $ticketData["ContactEmail"];
 $companyName = $ticketData["CompanyName"];
-//Fire MakeSlackNewTicketMessage to get an encoded message for Slack
-$message = MakeSlackNewTicketMessage($ticketNumber,$ticketId,$ticketTitle,$ContactName,$ContactPhone,$ContactEmail,$companyName,$atzone);
-##TESTMODE is created from the checkbox in form.html. It stops the message from being dispatched to Slack but displayes it in the browser.
-if($testmode){
-	echo urldecode($message)."<br />";
-	echo $room."<br />";
-	echo $slacknotificationsendpoint;
-	echo "<br /><br /><br /><br /><br />";
-	print_r($ticketData);
-}
-else {
-	slack($message,'#'.$ticketnotificationroom,$slacknotificationsendpoint);
-}
+$ticketStatus = $ticketData["TicketStatus"];
+$ticketPriority = $ticketData["TicketPriority"];
+$ResourceName = $ticketData["ResourceName"];
+$ticketId = $ticketData["id"];
 ?>
+*Details for <?php echo $ticketNumber; ?>:*
+
+Title: <?php echo $ticketTitle; ?>
+
+Company: <?php echo $companyName; ?>
+
+Contact: <?php echo $ContactName; ?>
+
+Phone & Email: <?php echo $ContactPhone." | ".$ContactEmail; ?>
+
+Owner: <?php echo $ResourceName;?>
+
+<https://<?php echo $atzone; ?>.autotask.net/Autotask/AutotaskExtend/ExecuteCommand.aspx?Code=OpenTicketDetail&TicketNumber=<?php echo $ticketNumber;?>|View Ticket>

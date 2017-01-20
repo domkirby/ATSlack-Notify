@@ -1,6 +1,10 @@
 # ATSlack-Notify
 ATSlack Ticket Notifications (Sends New Ticket Notifications to Slack).
 I have limited knowledge of writing these things, this is just about as far as I can take it. Hopefully someone else can add fancy stuff like slash commands! I am working on a few improvements, including a /ataccept command to accept the ticket. However I also have to work so I don't know when that will be ready :).
+
+##NOTE
+This Dev branch contains functions and features currently not working. Please download the master branch.
+
 ##Requirements
 You'll need a server (Linux is ideal) with PHP and PHP-SOAP client and MySQL/MariaDB. Many shared web hosts offer this. When I was building and testing it, I was doing so on PHP7 on a Plesk / CentOS web server. *SSL is also required. The task will FAIL if you do not place this on an SSL host* Here is an example of that the notification looks like: https://i.imgur.com/9rLqz0N.png
 
@@ -39,6 +43,8 @@ Create  **NEW** extension callout with the following variables:
 
 Save & Close
 
+*Finished Callouts:* https://i.imgur.com/l0WwaDT.png
+
 Now create a workflow rule to fire this callout. For my purposes, I set my workflow to fire when a new ticket is created by an external contact, and filtered it to certain queues that matter most to me. You can design yours however you want. Just make sure that you select your callout under actions.
 
 ### Ticket Reply Direct Messages (ticketReply.php)
@@ -56,6 +62,8 @@ Create a ticket extension as before with the following paramters
 * Data Format Name Value Pair
 
 Save & Close
+
+*Finished Callouts:* https://i.imgur.com/l0WwaDT.png
 
 Now create a workflow rule to fire this callout. For my purposes, I set my workflow conditions to modified by ticket contact.
 

@@ -32,11 +32,19 @@ $dbname = "atslack"; #database name
 $dbmantoken = "RANDOMSTRONG"; #token from your slash command (you will get this from Slack)
 $adminlist = "admin1|admin2"; //Separate by pipe symbol as seen in example if you need multiple people to have access. (list of users allowed to manage db)
 
+//timeoutfix
+//if you are having timeout issues, set this to TRUE
+$timeoutfix = false;
+
+
 //ticketSlack2.php (Ticket Notifications)
 $ticketnotificationroom = "tickets"; #Slack room that you want the messages in, minus the hashtag#
 
 //ticketReply.php (Ticket Reply Notifications)
 $replyenabled = true; #Set this to false to prevent this function from being fired ever
+
+//ticketLookup.php (/lookup to lookup a ticket's details)
+$ticketlookuptoken = ""; //Slack token from /lookup slash command
 
 
 /*

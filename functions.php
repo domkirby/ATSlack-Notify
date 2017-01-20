@@ -39,8 +39,8 @@ function slack($message, $room, $slackurl) {
 #End Slack Function
 #GetTicketInfo - New Master Function to Get Ticket Info
 
-function GetTicketInfo($TheticketNumber, $wsdl, $username, $password) {
-	$authWsdl = $wsdl;
+function GetTicketInfo($TheticketNumber, $awsdl, $username, $password) {
+	$authWsdl = $awsdl;
 	$opts = array('trace' => 1);
 	$client = new ATWS\Client($authWsdl, $opts);
 	$zoneInfo = $client->getZoneInfo($username);
@@ -92,6 +92,10 @@ function GetTicketInfo($TheticketNumber, $wsdl, $username, $password) {
 	$ResourceEntities = $AssignedResource->queryResult->EntityResults->Entity;
 	// Now we create each piece of data as a var
 	$TicketTitle = $TicketEntities->Title;
+	$TicketDescription = $TicketEntities->Description;
+	$TicketStatus = $TicketEntities->Status;
+	$TicketPriority = $TicketEntities->Priority;
+	$TicketId = $TicketEntities->id;
 	$FirstName = $ContactEntities->FirstName;
 	$LastName = $ContactEntities->LastName;
 	$TheName = $FirstName." ".$LastName;
@@ -99,6 +103,9 @@ function GetTicketInfo($TheticketNumber, $wsdl, $username, $password) {
 	$Email = $ContactEntities->EMailAddress;
 	$AccountName = $AccountEntities->AccountName;
 	$ResourceUsername = $ResourceEntities->UserName;
+	$ResourceFirstname = $ResourceEntities->FirstName;
+	$ResourceLastname = $ResourceEntities->LastName;
+	$ResourceName = $ResourceFirstname." ".$ResourceLastname;
 	//Now we put this data into an array, and return that array so that ticketSlack can make a message
 	$ticketDataArray = [
 		"TicketTitle" => $TicketTitle,
@@ -107,7 +114,12 @@ function GetTicketInfo($TheticketNumber, $wsdl, $username, $password) {
 		"ContactEmail" => $Email,
 		"CompanyName" => $AccountName,
 		"ResourceUsername" => $ResourceUsername,
-		"AccountId" => $AccountId
+		"AccountId" => $AccountId,
+		"TicketDescription" => $TicketDescription,
+		"TicketStatus" => $TicketStatus,
+		"TicketPriority" => $TicketPriority,
+		"id" => $TickedId,
+		"ResourceName" => $ResourceName
 		];
 	return $ticketDataArray;
 }
