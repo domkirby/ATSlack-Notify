@@ -18,7 +18,13 @@ Username and password should be API credentials for your Autotask instance. You 
 
 $extensiontoken is ***IMPORTANT:*** This adds a layer of security to the system, preventing a random person from war dialing ticket numbers :). Set this to a RANDOM value (best not to use special characters). Then add it to your Ticket Extension per the below instructions!
 
-**MYSQL:** You will need to create a database and a user with full access to it. Save that information into config.php.
+## MySQL Database
+
+You will need to manually create a MySql database as well as a user with full access. Save that information in the database section of config.php.
+$dbusername = MySQL User
+$dbpassword = MySQL User Pass
+$dbname = Database Name
+$dbhost = MySQL Server (usually localhost)
 
 NOW YOU WILL SETUP EACH FUNCTION OF THE SOFTWARE
 
@@ -60,7 +66,7 @@ Save & Close
 Now create a workflow rule to fire this callout. For my purposes, I set my workflow conditions to modified by ticket contact.
 
 #### Setup Database
-When you filled out config.php, you should have provided database details. Now, navigate to https://server/atslackfolder/installdb.php. Check the box and click Install Database. This will create the usermap table in your database.
+Earlier, you created a MySQL Database and saved the info. Now you need to add the tables. To do so go to https://server/atslack/installdb.php and follow the instructions. This script will format the tables in the database.
 
 ***DELETE INSTALLDB.PHP ONCE YOU ARE DONE RUNNING IT***
 
