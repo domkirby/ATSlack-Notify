@@ -1,3 +1,4 @@
+## Note: New version is a work in progress (fresh start with more customization)
 # ATSlack-Notify
 ATSlack Ticket Notifications (Sends New Ticket Notifications to Slack).
 I have limited knowledge of writing these things, this is just about as far as I can take it. Hopefully someone else can add fancy stuff like slash commands! I am working on a few improvements, including a /ataccept command to accept the ticket. However I also have to work so I don't know when that will be ready :).
